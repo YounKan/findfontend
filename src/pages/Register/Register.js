@@ -43,8 +43,8 @@ onSubmit = event => {
           <table>
             <tr>
               <td>
-                <input type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange} /><br />
-                <input type="text" name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange}/><br />
+                <input type="text" name="firstName" placeholder="firstname" value={this.state.firstName} onChange={this.onTextChange} /><br />
+                <input type="text" name="lastName" placeholder="lastname" value={this.state.lastName} onChange={this.onTextChange}/><br />
                 <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange}/><br />
                 <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange}/><br />
                 <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.onTextChange}/><br />

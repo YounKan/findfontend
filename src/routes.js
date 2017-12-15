@@ -9,8 +9,11 @@ import Home from './pages/Home/Home'
 import Topic from './pages/Topic/Topic'
 import NewTopic from './pages/NewTopic/NewTopic'
 import AllTopic from './pages/AllTopic/AllTopic'
+import AdminUser from './pages/AdminUser/AdminUser'
 import Profile from './pages/Profile/Profile'
 import EditProfile from './pages/EditProfile/EditProfile'
+import EditUser from './pages/EditUser/EditUser'
+import AdminTopic from './pages/AdminTopic/AdminTopic'
 import Item from './pages/Item/Item'
 
 
@@ -24,6 +27,9 @@ const Routes = () => {
 <Route exact path="/topic/id/" component={Topic} />
 <Route exact path="/NewTopic" component={NewTopic} />
 <Route exact path="/alltopic" component={AllTopic} />
+<Route exact path="/adminuser" component={AdminUser} />
+<Route exact path="/admintopic" component={AdminTopic} />
+<Route exact path="/edituser" component={EditUser} />
 
 
 {!localStorage.getItem('username') ? (

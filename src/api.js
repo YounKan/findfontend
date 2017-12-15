@@ -18,25 +18,18 @@ export const login = (username, password) => {
         .catch(error => error.response)
 }
 
-export const find = () => {
-    return axiosInstance.get('api/user/find/'+localStorage.getItem('username'))
-        .then(data => data)
-        .then(response => response.data)
-        .catch(error => error.response)
-}
 
 
 
 
 
-export const register = (firstname ,lastname ,username,password,email,tel) => {
+export const register = (firstname ,lastname ,username,password,email) => {
     const data = {
-        firstname:firstname,
-        lastname:lastname,
+        firstName:firstname,
+        lastName:lastname,
         username: username,
         password: password,
-        email:email,
-        tel:tel
+        email:email
     }
 
     return axiosInstance.post('api/user/signup', data)
@@ -44,34 +37,12 @@ export const register = (firstname ,lastname ,username,password,email,tel) => {
         .catch(error => error.response)
 }
 
-export const editprofile = (firstname ,lastname ,username,password,email) => {
-    const data = {
-        firstname:firstname,
-        lastname:lastname,
-        username: username,
-        password: password,
-        email:email
-    }
 
-    return axiosInstance.put('api/user/editprofile', data)
-        .then(data => data)
-        .catch(error => error.response)
-}
 
-export const publishPost = (title, content,author) => {
-    const data = {
-        title: title,
-        content: content,
-        author: author
-    }
 
-    return axiosInstance.post('api/comment/create/', data)
-        .then(data => data)
-        .catch(error => error.response)
-}
 
 export const getAllPosts = () => {
-    return axiosInstance.get('/api/comment/all/')
+    return axiosInstance.get('/api/comment/all/'+ localStorage.getItem('topic'))
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }
@@ -146,6 +117,18 @@ export const findtopic = () => {
         .then(response => response.data)
         .catch(error => error.response)
 }
+export const findcomment = () => {
+    return axiosInstance.get('api/comment/id/'+ localStorage.getItem('topic'))
+        .then(data => data)
+        .then(response => response.data)
+        .catch(error => error.response)
+}
+
+export const deleteuser = () => {
+    return axiosInstance.get('api/user/delete/'+ localStorage.getItem('deleteuser'))
+        .then(data => data)
+        .catch(error => error.response)
+}
 
 
 export const getAlltopic = () => {
@@ -155,5 +138,53 @@ export const getAlltopic = () => {
 }
 
 
+
+export const find = () => {
+    return axiosInstance.get('api/user/find/'+localStorage.getItem('username'))
+        .then(data => data)
+        .then(response => response.data)
+        .catch(error => error.response)
+}
+
+export const getedituser = () => {
+    return axiosInstance.get('api/user/find/'+localStorage.getItem('edituser'))
+        .then(data => data)
+        .then(response => response.data)
+        .catch(error => error.response)
+}
+
+export const getedittopic = () => {
+    return axiosInstance.get('api/topic/find/'+localStorage.getItem('edittopic'))
+        .then(data => data)
+        .then(response => response.data)
+        .catch(error => error.response)
+}
+
+export const publishPost = (title, content,author) => {
+    const data = {
+        title: title,
+        content: content,
+        author: author
+    }
+
+    return axiosInstance.post('api/comment/create/', data)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+
+export const editprofile = (firstname ,lastname ,username,password,email) => {
+    const data = {
+        firstName:firstname,
+        lastName:lastname,
+        username: username,
+        password: password,
+        email:email
+    }
+
+    return axiosInstance.post('api/user/editprofile', data)
+        .then(data => data)
+        .catch(error => error.response)
+}
 
 /*--------------------------------------------------------------------*/

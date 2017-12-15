@@ -44,7 +44,7 @@ submitPost = event => {
   .then(data => {
     console.log(data);
  if (data.status === 200) {
-  this.props.history.replace('/topic') 
+  this.props.history.replace('/alltopic') 
    }
   })
 }

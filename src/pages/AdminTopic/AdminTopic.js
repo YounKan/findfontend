@@ -1,18 +1,16 @@
 import React from 'react';
-import {register} from '../../api'
 import Header from '../Header/Header';
-import { publishPost, getAlltopic } from '../../api'
+import { publishPost, getAlltopic,deleteuser,getUser } from '../../api'
 import {Link} from 'react-router-dom';
 
-class Topic extends React.Component {
-
-  
+class AdminTopic extends React.Component {
 
   state = {
-    title: '',
-    content: '',
-    author:'',
-    room:'',
+    firstName:'',
+    lastName:'',
+    username: '',
+    password: '',
+    email:'',
     allPosts: []
   }
   
@@ -28,7 +26,7 @@ class Topic extends React.Component {
   }
 
   getPosts = () => {
-    getAlltopic()
+    getUser()
       .then(data => this.setState({ allPosts: data }))
       .catch(err => console.error('Something went wrong.'))
   }
@@ -47,10 +45,23 @@ class Topic extends React.Component {
   onSubmit = event => {
     console.log(this)
     event.preventDefault() // no refresh
-    const name = event.target.name
-          localStorage.setItem('topic', name)   //keep username to localstroage    
-          console.log(name)
-          this.props.history.replace('/topic/id/') 
+    const name = event.target.name 
+    console.log(name)
+    localStorage.setItem('edituser', name)
+    console.log(localStorage.setItem('edituser', name))
+          
+    this.props.history.replace('/edituser') 
+}
+onDelete = event => {
+  console.log(this)
+  event.preventDefault() // no refresh
+  const name = event.target.name 
+  localStorage.setItem('deleteuser', name)
+        deleteuser()
+        .then(() => { this.getPosts()  })
+        .catch(err => console.error('Something went wrong.'))
+        console.log( localStorage.getItem('deleteuser'))
+       
 }
 
 
@@ -69,22 +80,22 @@ class Topic extends React.Component {
 
 <tr>
           <td>
-          Published by: {post.author}
+          {post.firstName}
           </td>
           <td>
-          Title: {post.title}
+           {post.lastName}
           </td>
           <td>
-          Title:  {post.content}
+           {post.username}
           </td>
           <td>
-          Title: {post.room}
+         {post.email}
           </td>
           <td>
-          Title:  {post.time}
-          </td>
-          <td>
-          <input type="submit" value="comment" className="btn btn-danger" name={post._id} onClick={this.onSubmit}/>
+          <input type="submit" value="comment" className="btn btn-danger" name={post.username} onClick={this.onSubmit}/>
+        </td>
+        <td>
+          <input type="submit" value="delete" className="btn btn-danger" name={post.username} onClick={this.onDelete}/>
         </td>
 
         </tr>
@@ -98,4 +109,4 @@ class Topic extends React.Component {
   }
 }
 
-export default Topic
+export default AdminTopic

@@ -1,5 +1,5 @@
 import React from 'react';
-import { findtopic,publishPost,getAllPosts } from '../../api'
+import { findtopic,publishPost,getAllPosts ,findcomment } from '../../api'
 import Header from '../Header/Header';
 import { Button } from 'semantic-ui-react'
 
@@ -36,7 +36,7 @@ class Topic extends React.Component {
   }
 
   getPosts = () => {
-    getAllPosts()
+    findcomment()
     .then(data => this.setState({ allPosts: data }))
     .catch(err => console.error('Something went wrong.'))
       console.log("ccdffddd")

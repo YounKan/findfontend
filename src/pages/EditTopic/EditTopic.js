@@ -1,20 +1,17 @@
 import React from 'react';
-import './EditProfile.css';
 import Header from '../Header/Header';
 import { Segment } from 'semantic-ui-react'
-import { editprofile,find } from '../../api'
+import { editprofile,find,getedituser } from '../../api'
 
-class EditProfile extends React.Component {
+class EditTopic extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    email: ""
+    title:'',
+    content: '',
+    author: ''
 }
 
   getUser = () => {
-    find().then(post => this.setUser(post))
+    getedittopic().then(post => this.setUser(post))
       .catch(err => console.error('Something went wrong.'))
   }
 
@@ -38,11 +35,10 @@ onChange(e) {
 setUser = (user) => {
   console.log(user)
   this.setState({
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      password: user.password,
-      email: user.email
+    title: user.title,
+    content: user.content,
+    author: user.author,
+
   })
 }
 
@@ -68,11 +64,10 @@ setUser = (user) => {
           <table>
             <tr>
               <td>
-                <input type="text" name="firstName" placeholder="firstName" value={this.state.firstName} onChange={this.onTextChange} /><br />
-                <input type="text" name="lastName" placeholder="lastName" value={this.state.lastName} onChange={this.onTextChange}/><br />
-                <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange}/><br />
-                <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange}/><br />
-                <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.onTextChange}/><br />
+                <input type="text" name="firstName" placeholder="firstName" value={this.state.title} onChange={this.onTextChange} /><br />
+                <input type="text" name="lastName" placeholder="lastName" value={this.state.content} onChange={this.onTextChange}/><br />
+                <input type="text" name="username" placeholder="username" value={this.state.author} onChange={this.onTextChange}/><br />
+
 
 
                 
@@ -91,4 +86,4 @@ setUser = (user) => {
   }
 }
 
-export default EditProfile;
+export default EditTopic;

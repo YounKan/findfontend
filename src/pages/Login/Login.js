@@ -3,6 +3,12 @@ import { login } from '../../api'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import {Form,Button} from 'semantic-ui-react'
+import ReactDOM from 'react-dom';
+import FacebookLogin from 'react-facebook-login';
+ 
+const responseFacebook = (response) => {
+  console.log(response);
+}
 
 class Login extends React.Component {
   state = { // set state can use in class component only
@@ -55,7 +61,15 @@ class Login extends React.Component {
             <Button type='submit' className='ui teal fluid button'>Log in</Button>
      
           </Form>
+
+          <FacebookLogin
+ appId="1088597931155576"
+ autoLoad={true}
+ fields="name,email,picture"
+ //onClick={componentClicked}
+ callback={responseFacebook} />
  </div>
+
     );
   }
 }
