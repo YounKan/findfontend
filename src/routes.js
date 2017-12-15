@@ -6,20 +6,24 @@ import Post from './pages/Post'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import Home from './pages/Home/Home'
-import Category from './pages/Category/Category'
+import Topic from './pages/Topic/Topic'
+import NewTopic from './pages/NewTopic/NewTopic'
+import AllTopic from './pages/AllTopic/AllTopic'
 import Profile from './pages/Profile/Profile'
-import EditProfile from './pages/Editprofile/Editprofile'
+import EditProfile from './pages/EditProfile/EditProfile'
 import Item from './pages/Item/Item'
 
 
 const Routes = () => {
-    return (
+    return (   
 <Switch>
 <Route exact path="/" component={Index} />
 <Route exact path="/home" component={Home} />
 <Route exact path='/register' component={Register} />
 <Route exact path="/login" component={Login} />
-<Route exact path="/category" component={Category} />
+<Route exact path="/topic/id/" component={Topic} />
+<Route exact path="/NewTopic" component={NewTopic} />
+<Route exact path="/alltopic" component={AllTopic} />
 
 
 {!localStorage.getItem('username') ? (

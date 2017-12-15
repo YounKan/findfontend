@@ -4,11 +4,11 @@ import Header from '../Header/Header';
 
 class Register extends React.Component {
   state = { // set state can use in class component only
-    firstname : "",
-    lastname : "",
+    firstName : "",
+    lastName : "",
     username:"" ,
     password:"",
-    email:"",
+    email:""
 
   }
 
@@ -23,7 +23,7 @@ onTextChange = event => {
 
 onSubmit = event => {
   event.preventDefault() 
-  register(this.state.firstname,this.state.lastname,this.state.username,this.state.password,this.state.email,this.state.tel)
+  register(this.state.firstName,this.state.lastName,this.state.username,this.state.password,this.state.email)
   .then(data => {
     console.log(data);
  if (data.status === 200) {

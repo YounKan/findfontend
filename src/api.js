@@ -1,8 +1,9 @@
 import axios from 'axios'
 import localStorage from 'localStorage'
+import { request } from 'https';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3004',
+    baseURL: 'http://localhost:3009',
     headers: { 'Content-Type': 'application/json' }
 })
 
@@ -43,14 +44,13 @@ export const register = (firstname ,lastname ,username,password,email,tel) => {
         .catch(error => error.response)
 }
 
-export const editprofile = (firstname ,lastname ,username,password,email,tel) => {
+export const editprofile = (firstname ,lastname ,username,password,email) => {
     const data = {
         firstname:firstname,
         lastname:lastname,
         username: username,
         password: password,
-        email:email,
-        tel:tel
+        email:email
     }
 
     return axiosInstance.put('api/user/editprofile', data)
@@ -58,20 +58,20 @@ export const editprofile = (firstname ,lastname ,username,password,email,tel) =>
         .catch(error => error.response)
 }
 
-export const publishPost = (title, content) => {
+export const publishPost = (title, content,author) => {
     const data = {
         title: title,
         content: content,
-        user: { username: localStorage.getItem('username') }
+        author: author
     }
 
-    return axiosInstance.post('api/post/create/', data)
+    return axiosInstance.post('api/comment/create/', data)
         .then(data => data)
         .catch(error => error.response)
 }
 
 export const getAllPosts = () => {
-    return axiosInstance.get('/api/post/all/')
+    return axiosInstance.get('/api/comment/all/')
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }
@@ -103,3 +103,57 @@ export const getUser= () => {
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------------*/
+
+export const commentTopic = (title ,content ,author) => {
+    const data = {
+        title:title,
+        content:content,
+        author: author
+    }
+
+    return axiosInstance.post('api/comment/create', data)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+
+
+export const newTopic = (title ,content ,author,room) => {
+    const data = {
+        title:title,
+        content:content,
+        author: author,
+        room : room
+    }
+
+    return axiosInstance.post('api/topic/create', data)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+export const findtopic = () => {
+    return axiosInstance.get('api/topic/id/'+ localStorage.getItem('topic'))
+        .then(data => data)
+        .then(response => response.data)
+        .catch(error => error.response)
+}
+
+
+export const getAlltopic = () => {
+    return axiosInstance.get('/api/topic/all/')
+        .then(response => response.data)
+        .catch(error => { throw (error.response) })
+}
+
+
+
+/*--------------------------------------------------------------------*/

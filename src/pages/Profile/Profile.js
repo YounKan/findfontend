@@ -3,7 +3,7 @@ import { find } from '../../api'
 import Header from '../Header/Header';
 import { Button } from 'semantic-ui-react'
 
-const user  = localStorage.getItem('username');
+
 class Profile extends React.Component {
   constructor() {
     super();
@@ -27,7 +27,7 @@ class Profile extends React.Component {
 
 
   render() {
-    console.log(this.state.username)
+    console.log(this.state)
 
     return (
       <div>
